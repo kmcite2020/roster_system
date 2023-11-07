@@ -1,4 +1,4 @@
-part of '../logic.dart';
+part of 'blocs.dart';
 
 final medicalOfficerBlocRM = RM.inject(
   () => MedicalOfficerBloc(),

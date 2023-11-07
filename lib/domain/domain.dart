@@ -1,42 +1,48 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:isar/isar.dart';
+// import 'package:isar/isar.dart';
 
-part 'day.dart';
-part 'department.dart';
-part 'domain.g.dart';
-part 'enums.dart';
-part 'manager.dart';
-part 'medical_officer.dart';
-part 'medical_officers.dart';
-part 'misc.dart';
-part 'officer.dart';
-part 'roster.dart';
-part 'settings.dart';
-part 'shift.dart';
+import 'package:project_roster/domain/models/models.dart';
 
-@collection
-class Shift {
-  Id id = Isar.autoIncrement;
-  String shiftName = '';
-  int shiftHours = 0;
-  List<String> officers = [];
-}
+import '../presentation/features/rosters/roster_management.dart';
+
+part 'archives/day.dart';
+part 'archives/department.dart';
+// part 'domain.g.dart';
+// part 'manager.dart';
+// part 'medical_officer.dart';
+// part 'medical_officers.dart';
+// part 'misc.dart';
+// part 'officer.dart';
+// part 'roster.dart';
+// part 'archives/settings.dart';
+// part 'shift.dart';
 
 // @collection
-// class Department {
-//   Id id = Isar.autoIncrement;
-// }
+// @embedded
+class Shift {
+  // @enumerated
+  ShiftType shiftType = ShiftType.morning;
+  List<Officer>? officersValue;
 
-@collection
+  List<Officer> get officers => officersValue ?? [];
+
+  void addOfficer(Officer officer) => officersValue = officers..add(officer);
+  void removeOfficer(Officer officer) =>
+      officersValue = officers..remove(officer);
+
+  // @ignore
+  int get shiftHours => switch (shiftType) {
+        ShiftType.morning => 6,
+        ShiftType.evening => 6,
+        ShiftType.night => 12,
+      };
+
+  @override
+  String toString() => '${shiftType.name} $officers';
+}
+
 class Manager {
-  Id id = Isar.autoIncrement;
+  // Id id = Isar.autoIncrement;
   String officerName = '';
   int officerScale = 17;
 }
-
-// @collection
-// class Day {
-//   Id id = Isar.autoIncrement;
-//   String dayName = '';
-//   List<String> shifts = [];
-// }

@@ -1,38 +1,44 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:flutter/material.dart';
-import 'package:isar/isar.dart';
 import 'package:project_roster/domain/domain.dart';
-import 'package:project_roster/presentation/logic.dart';
 
-part 'configuration.dart';
-part 'models.g.dart';
+import '../../presentation/features/rosters/roster_management.dart';
+part 'models.freezed.dart';
+// part 'models.g.dart';
 
-@Collection()
-class Domain {
-  Id id = 0;
-  @ignore
-  Configuration configuration = Configuration();
-  static const ID = 0;
+@freezed
+class Roster with _$Roster {
+  const factory Roster({
+    required final String id,
+    required final String rosterName,
+    required final List<Day> days,
+    required final String scale,
+  }) = _Roster;
 }
 
-@Collection()
-class Roster {
-  Id id = Isar.autoIncrement;
-  Department department = Department();
+@freezed
+class Day with _$Day {
+  const factory Day({
+    required final DayType dayType,
+    required final List<Shift> shifts,
+    required final String scale,
+  }) = _Day;
 }
 
-@Collection()
-class Day {
-  Id id = Isar.autoIncrement;
-  String name = '';
+@freezed
+class Officer with _$Officer {
+  const factory Officer({
+    required final String id,
+    required final String officerName,
+    required final String shiftHours,
+    required final String scale,
+  }) = _Officer;
 }
 
-@collection
-class Officer {
-  Id id = Isar.autoIncrement;
-  String officerName = '';
-  int shiftHours = 0;
-  int officerScale = 17;
+enum OfficerType {
+  houseOfficer,
+  medicalOfficer,
+  trainingMedicalOfficer,
+  registerar,
+  consultant,
 }
