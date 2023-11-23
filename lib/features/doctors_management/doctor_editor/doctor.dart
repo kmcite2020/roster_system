@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../ui.dart';
+import '../../../presentation/features/ui.dart';
 import '../doctors_manager/doctors_manager.dart';
 
 part 'doctor.g.dart';

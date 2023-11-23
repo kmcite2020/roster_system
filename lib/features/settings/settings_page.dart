@@ -18,10 +18,10 @@ class SettingsPage extends ReactiveStatelessWidget {
           DropdownButtonFormField(
             value: settingsManager.themeMode,
             items: ThemeMode.values.map(
-              (e) {
+              (eachThemeMode) {
                 return DropdownMenuItem(
-                  child: e.name.toUpperCase().text(),
-                  value: e,
+                  child: eachThemeMode.name.toUpperCase().text(),
+                  value: eachThemeMode,
                 );
               },
             ).toList(),
@@ -30,10 +30,10 @@ class SettingsPage extends ReactiveStatelessWidget {
           DropdownButtonFormField(
             value: settingsManager.materialColor,
             items: Colors.primaries.map(
-              (e) {
+              (eachMaterialColor) {
                 return DropdownMenuItem(
-                  child: e.colorName.toUpperCase().text(),
-                  value: e,
+                  child: eachMaterialColor.colorName.toUpperCase().text(),
+                  value: eachMaterialColor,
                 );
               },
             ).toList(),

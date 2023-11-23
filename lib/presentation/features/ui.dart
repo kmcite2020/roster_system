@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_roster/presentation/features/doctors_management/doctor_editor/doctor_editor_page.dart';
-import 'package:project_roster/presentation/features/doctors_management/doctors_manager/doctors_manager_page.dart';
 import 'package:project_roster/presentation/features/rosters/add_roster_page.dart';
 import 'package:project_roster/presentation/features/rosters/roster_management.dart';
 // import 'package:project_roster/presentation/ui/pages/rosters_ui/add_roster_page.dart';
@@ -13,8 +11,10 @@ import 'package:uuid/uuid.dart';
 import '../../domain/models/models.dart';
 import 'dart:developer' as dev;
 
+import '../../features/doctors_management/doctor_editor/doctor_editor_page.dart';
+import '../../features/doctors_management/doctors_manager/doctors_manager_page.dart';
+import '../../features/settings/settings.dart';
 import 'rosters/rosters_page.dart';
-import 'settings/settings.dart';
 
 // import 'pages/officers_page.dart';
 // import 'pages/settings/settings_page.dart';
@@ -42,18 +42,14 @@ final navigator = RM.injectNavigator(
 
 abstract class Routes {
   static const home = '/';
-
   static const dashboard = '/dashboard';
-
   static const doctors = '/doctors';
   static const doctor = '/doctor';
-
   static const rosters = '/rosters';
   static const roster = '/roster';
   static const addRoster = '/addRoster';
   static const days = '/days';
   static const shifts = '/shifts';
-
   static const settings = '/settings';
 }
 
@@ -61,6 +57,7 @@ extension ObjectExtension on Object? {
   Text text([double? textScaleFactor]) {
     return Text(
       toString(),
+      // ignore: deprecated_member_use
       textScaleFactor: textScaleFactor ?? settingsManager.textScaleFactor,
     );
   }

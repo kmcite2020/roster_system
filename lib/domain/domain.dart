@@ -30,7 +30,6 @@ class Shift {
   void removeOfficer(Officer officer) =>
       officersValue = officers..remove(officer);
 
-  // @ignore
   int get shiftHours => switch (shiftType) {
         ShiftType.morning => 6,
         ShiftType.evening => 6,

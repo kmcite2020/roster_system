@@ -2,8 +2,8 @@ import 'package:colornames/colornames.dart';
 import 'package:flutter/material.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
+import '../../../features/settings/settings.dart';
 import '../../blocs/duty_manager_bloc.dart';
-import '../settings/settings.dart';
 import '../ui.dart';
 
 class DutyManagerWidget extends ReactiveStatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:project_roster/presentation/features/ui.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
-import '../../settings/settings.dart';
-import '../../ui.dart';
+import '../../../../features/settings/settings.dart';
 import '../doctors_manager/doctors_manager.dart';
 import 'doctor.dart';
 import 'doctor_editor.dart';
