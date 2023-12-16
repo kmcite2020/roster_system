@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_roster/presentation/features/rosters/roster_management.dart';
-import 'package:project_roster/presentation/features/ui.dart';
+import 'package:roster_system/presentation/features/rosters/roster_management.dart';
+import 'package:roster_system/presentation/features/ui.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
 import '../../../features/doctors_management/doctor_editor/doctor.dart';

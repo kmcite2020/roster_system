@@ -1,6 +1,6 @@
 {
-    "name": "project_roster",
-    "short_name": "project_roster",
+    "name": "roster_system",
+    "short_name": "roster_system",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -4,7 +4,7 @@
 // import 'package:states_rebuilder/states_rebuilder.dart';
 
 import 'package:flutter/material.dart';
-import 'package:project_roster/presentation/features/ui.dart';
+import 'package:roster_system/presentation/features/ui.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
 import '../pages/rosters_ui/rosters_bloc.dart';

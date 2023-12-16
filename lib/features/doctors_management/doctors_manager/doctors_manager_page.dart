@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_roster/presentation/features/ui.dart';
+import 'package:roster_system/presentation/features/ui.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
 import 'doctors_manager.dart';

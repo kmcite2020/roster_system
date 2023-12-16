@@ -1,4 +1,4 @@
-package dev.loner.project_roster
+package dev.loner.roster_system
 
 import io.flutter.embedding.android.FlutterActivity
 

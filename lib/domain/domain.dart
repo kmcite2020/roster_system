@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 // import 'package:isar/isar.dart';
 
-import 'package:project_roster/domain/models/models.dart';
+import 'package:roster_system/domain/models/models.dart';
 
 import '../presentation/features/rosters/roster_management.dart';
 

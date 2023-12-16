@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:project_roster/presentation/features/ui.dart';
+import 'package:roster_system/presentation/features/ui.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
 part 'roster_management.freezed.dart';

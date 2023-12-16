@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:project_roster/domain/domain.dart';
+import 'package:roster_system/domain/domain.dart';
 
 import '../../presentation/features/rosters/roster_management.dart';
 part 'models.freezed.dart';

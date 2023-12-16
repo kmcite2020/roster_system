@@ -1,4 +1,4 @@
-import 'package:project_roster/domain/domain.dart';
+import 'package:roster_system/domain/domain.dart';
 // import '../../domain/repositories/repositories.dart';
 import 'package:states_rebuilder/scr/state_management/rm.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
