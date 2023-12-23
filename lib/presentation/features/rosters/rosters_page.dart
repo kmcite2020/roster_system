@@ -26,12 +26,16 @@ class RostersPage extends ReactiveStatelessWidget {
         children: [
           FloatingActionButton(
             heroTag: randomID,
-            onPressed: () => navigator.to(Routes.days),
+            onPressed: () {
+              // navigator.to(Routes.days);
+            },
             child: Icon(Icons.data_array_sharp),
           ),
           FloatingActionButton(
             heroTag: randomID,
-            onPressed: () => navigator.to(Routes.addRoster),
+            onPressed: () {
+              // navigator.to(Routes.addRoster);
+            },
             child: Icon(Icons.add),
           ),
         ],

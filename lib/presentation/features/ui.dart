@@ -5,32 +5,27 @@ import 'package:states_rebuilder/states_rebuilder.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../domain/models/models.dart';
-import '../../features/doctors_management/doctor_editor/doctor_editor_page.dart';
-import '../../features/doctors_management/doctors_manager/doctors_manager_page.dart';
 import '../../features/settings/settings.dart';
-import 'rosters/add_roster_page.dart';
-import 'rosters/roster_management.dart';
-import 'rosters/rosters_page.dart';
 
 part 'pages/dashboard_page/specific_roster_page.dart';
 part 'pages/home_page.dart';
 
-final navigator = RM.injectNavigator(
-  routes: {
-    Routes.home: (_) => HomePage(),
-    // Routes.dashboard: (_) => DashboardPage(),
-    // Routes.officers: (_) => OfficersPage(),
-    // Routes.addOfficer: (_) => AddOfficerPage(),
-    Routes.addRoster: (_) => AddRosterEntryPage(),
-    Routes.roster: (_) => RosterPage(),
-    Routes.rosters: (_) => RostersPage(),
-    // Routes.days: (_) => DaysPage(),
-    // Routes.shifts: (_) => ShiftsPage(),
-    Routes.doctors: (_) => DoctorsManagerPage(),
-    Routes.doctor: (_) => DoctorEditorPage(id: _.arguments),
-    Routes.settings: (_) => SettingsPage(),
-  },
-);
+// final navigator = RM.injectNavigator(
+//   routes: {
+//     Routes.home: (_) => HomePage(),
+//     // Routes.dashboard: (_) => DashboardPage(),
+//     // Routes.officers: (_) => OfficersPage(),
+//     // Routes.addOfficer: (_) => AddOfficerPage(),
+//     Routes.addRoster: (_) => AddRosterEntryPage(),
+//     Routes.roster: (_) => RosterPage(),
+//     Routes.rosters: (_) => RostersPage(),
+//     // Routes.days: (_) => DaysPage(),
+//     // Routes.shifts: (_) => ShiftsPage(),
+//     Routes.doctors: (_) => DoctorsManagerPage(),
+//     Routes.doctor: (_) => DoctorEditorPage(id: _.arguments),
+//     Routes.settings: (_) => SettingsPage(),
+//   },
+// );
 
 abstract class Routes {
   static const home = '/';

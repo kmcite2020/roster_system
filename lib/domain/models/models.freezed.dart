@@ -150,7 +150,7 @@ class _$RosterImpl implements _Roster {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RosterImpl &&
@@ -311,7 +311,7 @@ class _$DayImpl implements _Day {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DayImpl &&
@@ -478,7 +478,7 @@ class _$OfficerImpl implements _Officer {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$OfficerImpl &&

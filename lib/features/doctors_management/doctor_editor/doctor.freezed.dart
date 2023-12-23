@@ -263,7 +263,7 @@ class _$DoctorImpl extends _Doctor with DiagnosticableTreeMixin {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DoctorImpl &&

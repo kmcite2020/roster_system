@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:roster_system/features/doctors_management/doctor_editor/doctor_editor_page.dart';
 import 'package:roster_system/presentation/features/ui.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
+import '../../core/navigator.dart';
 import 'doctors_manager.dart';
 
 class DoctorsManagerPage extends ReactiveStatelessWidget {
@@ -20,9 +22,7 @@ class DoctorsManagerPage extends ReactiveStatelessWidget {
                 .map(
                   (doctor) => ListTile(
                     title: doctor.name.text(),
-                    onTap: () {
-                      navigator.to(Routes.doctor, arguments: doctor.id);
-                    },
+                    onTap: () => navigator.to(DoctorEditorPage(id: doctor.id)),
                     trailing: IconButton(
                       onPressed: () => doctorsManager.removeDoctor(doctor),
                       icon: Icon(Icons.delete),

@@ -1,39 +1,35 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:roster_system/features/roster/pages/roster_page.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 import 'domain/repositories/repositories.dart';
-import 'features/doctors_management/doctors_manager/doctors_manager_page.dart';
+import 'features/core/navigator.dart';
 import 'features/settings/settings.dart';
-import 'presentation/features/ui.dart';
 
 // final directoryRM = RM.injectFuture(getApplicationDocumentsDirectory);
+
+typedef UI = ReactiveStatelessWidget;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await RM.storageInitializer(PersistStoreImpl());
-  // await RM.deleteAllPersistState();
-  // await directoryRM.initializeState();
   runApp(const MyApp());
 }
 
-class MyApp extends ReactiveStatelessWidget {
+class MyApp extends UI {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: themes.theme,
-        darkTheme: themes.darkTheme,
-        themeMode: settingsManager.themeMode,
-        home: Scaffold(
-          drawer: MyDrawer(),
-          body: IndexedStack(
-            children: [
-              DoctorsManagerPage(),
-            ],
-          ),
-        ),
-      );
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      navigatorKey: navigator.navigatorKey,
+      debugShowCheckedModeBanner: false,
+      theme: themes.theme,
+      darkTheme: themes.darkTheme,
+      themeMode: settingsManager.themeMode,
+      home: RosterPage(),
+    );
+  }
 }
 
 final themes = Themes();
@@ -65,24 +61,6 @@ class Themes {
       appBarStyle: FlexAppBarStyle.primary,
       useMaterial3: true,
       darkIsTrueBlack: true,
-    );
-  }
-}
-
-class MyDrawer extends ReactiveStatelessWidget {
-  const MyDrawer({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      child: NavigationDrawer(
-        children: [
-          NavigationDrawerDestination(
-            icon: Icon(Icons.abc),
-            label: 'label'.text(),
-          ),
-        ],
-      ),
     );
   }
 }
