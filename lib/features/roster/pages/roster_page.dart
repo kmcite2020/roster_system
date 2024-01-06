@@ -7,17 +7,17 @@ import '../../../main.dart';
 
 class RosterPage extends UI {
   const RosterPage({
-    required this.rosterName,
+    required this.rosterID,
   });
-  final String rosterName;
+  final String rosterID;
   @override
   Widget build(context) {
     return RosterBuilder(
-        rosterName: '',
+        rosterID: rosterID,
         builder: (roster) {
           return Scaffold(
             appBar: AppBar(
-              title: roster.rosterName.text(),
+              title: roster.name.text(),
             ),
             body: ListView(
               children: [

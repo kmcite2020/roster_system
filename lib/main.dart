@@ -27,6 +27,7 @@ typedef UI = ReactiveStatelessWidget;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await RM.storageInitializer(HiveStorage());
+  // await RM.deleteAllPersistState();
   runApp(const App());
 }
 

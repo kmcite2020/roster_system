@@ -22,19 +22,19 @@ Roster _$RosterFromJson(Map<String, dynamic> json) {
 mixin _$Roster {
   Map<String, RosterEntry> get rosterEntries =>
       throw _privateConstructorUsedError;
-  String get rosterName => throw _privateConstructorUsedError;
+  String get rosterID => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   @DateTimeRangeConverter()
   DateTimeRange get withEffectFromTo => throw _privateConstructorUsedError;
-  String get notificationNumber => throw _privateConstructorUsedError;
   List<String> get copyForwardedTo => throw _privateConstructorUsedError;
   String get signedBy => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
             Map<String, RosterEntry> rosterEntries,
-            String rosterName,
+            String rosterID,
+            String name,
             @DateTimeRangeConverter() DateTimeRange withEffectFromTo,
-            String notificationNumber,
             List<String> copyForwardedTo,
             String signedBy)
         raw,
@@ -44,9 +44,9 @@ mixin _$Roster {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
             Map<String, RosterEntry> rosterEntries,
-            String rosterName,
+            String rosterID,
+            String name,
             @DateTimeRangeConverter() DateTimeRange withEffectFromTo,
-            String notificationNumber,
             List<String> copyForwardedTo,
             String signedBy)?
         raw,
@@ -56,9 +56,9 @@ mixin _$Roster {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             Map<String, RosterEntry> rosterEntries,
-            String rosterName,
+            String rosterID,
+            String name,
             @DateTimeRangeConverter() DateTimeRange withEffectFromTo,
-            String notificationNumber,
             List<String> copyForwardedTo,
             String signedBy)?
         raw,
@@ -93,9 +93,9 @@ abstract class $RosterCopyWith<$Res> {
   @useResult
   $Res call(
       {Map<String, RosterEntry> rosterEntries,
-      String rosterName,
+      String rosterID,
+      String name,
       @DateTimeRangeConverter() DateTimeRange withEffectFromTo,
-      String notificationNumber,
       List<String> copyForwardedTo,
       String signedBy});
 }
@@ -114,9 +114,9 @@ class _$RosterCopyWithImpl<$Res, $Val extends Roster>
   @override
   $Res call({
     Object? rosterEntries = null,
-    Object? rosterName = null,
+    Object? rosterID = null,
+    Object? name = null,
     Object? withEffectFromTo = null,
-    Object? notificationNumber = null,
     Object? copyForwardedTo = null,
     Object? signedBy = null,
   }) {
@@ -125,18 +125,18 @@ class _$RosterCopyWithImpl<$Res, $Val extends Roster>
           ? _value.rosterEntries
           : rosterEntries // ignore: cast_nullable_to_non_nullable
               as Map<String, RosterEntry>,
-      rosterName: null == rosterName
-          ? _value.rosterName
-          : rosterName // ignore: cast_nullable_to_non_nullable
+      rosterID: null == rosterID
+          ? _value.rosterID
+          : rosterID // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       withEffectFromTo: null == withEffectFromTo
           ? _value.withEffectFromTo
           : withEffectFromTo // ignore: cast_nullable_to_non_nullable
               as DateTimeRange,
-      notificationNumber: null == notificationNumber
-          ? _value.notificationNumber
-          : notificationNumber // ignore: cast_nullable_to_non_nullable
-              as String,
       copyForwardedTo: null == copyForwardedTo
           ? _value.copyForwardedTo
           : copyForwardedTo // ignore: cast_nullable_to_non_nullable
@@ -158,9 +158,9 @@ abstract class _$$RosterImplCopyWith<$Res> implements $RosterCopyWith<$Res> {
   @useResult
   $Res call(
       {Map<String, RosterEntry> rosterEntries,
-      String rosterName,
+      String rosterID,
+      String name,
       @DateTimeRangeConverter() DateTimeRange withEffectFromTo,
-      String notificationNumber,
       List<String> copyForwardedTo,
       String signedBy});
 }
@@ -177,9 +177,9 @@ class __$$RosterImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? rosterEntries = null,
-    Object? rosterName = null,
+    Object? rosterID = null,
+    Object? name = null,
     Object? withEffectFromTo = null,
-    Object? notificationNumber = null,
     Object? copyForwardedTo = null,
     Object? signedBy = null,
   }) {
@@ -188,18 +188,18 @@ class __$$RosterImplCopyWithImpl<$Res>
           ? _value._rosterEntries
           : rosterEntries // ignore: cast_nullable_to_non_nullable
               as Map<String, RosterEntry>,
-      rosterName: null == rosterName
-          ? _value.rosterName
-          : rosterName // ignore: cast_nullable_to_non_nullable
+      rosterID: null == rosterID
+          ? _value.rosterID
+          : rosterID // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       withEffectFromTo: null == withEffectFromTo
           ? _value.withEffectFromTo
           : withEffectFromTo // ignore: cast_nullable_to_non_nullable
               as DateTimeRange,
-      notificationNumber: null == notificationNumber
-          ? _value.notificationNumber
-          : notificationNumber // ignore: cast_nullable_to_non_nullable
-              as String,
       copyForwardedTo: null == copyForwardedTo
           ? _value._copyForwardedTo
           : copyForwardedTo // ignore: cast_nullable_to_non_nullable
@@ -218,9 +218,9 @@ class _$RosterImpl implements _Roster {
   const _$RosterImpl(
       {final Map<String, RosterEntry> rosterEntries =
           const <String, RosterEntry>{},
-      this.rosterName = '',
+      this.rosterID = '',
+      this.name = '',
       @DateTimeRangeConverter() required this.withEffectFromTo,
-      this.notificationNumber = '',
       final List<String> copyForwardedTo = const <String>[],
       this.signedBy = ''})
       : _rosterEntries = rosterEntries,
@@ -240,13 +240,13 @@ class _$RosterImpl implements _Roster {
 
   @override
   @JsonKey()
-  final String rosterName;
+  final String rosterID;
+  @override
+  @JsonKey()
+  final String name;
   @override
   @DateTimeRangeConverter()
   final DateTimeRange withEffectFromTo;
-  @override
-  @JsonKey()
-  final String notificationNumber;
   final List<String> _copyForwardedTo;
   @override
   @JsonKey()
@@ -262,7 +262,7 @@ class _$RosterImpl implements _Roster {
 
   @override
   String toString() {
-    return 'Roster.raw(rosterEntries: $rosterEntries, rosterName: $rosterName, withEffectFromTo: $withEffectFromTo, notificationNumber: $notificationNumber, copyForwardedTo: $copyForwardedTo, signedBy: $signedBy)';
+    return 'Roster.raw(rosterEntries: $rosterEntries, rosterID: $rosterID, name: $name, withEffectFromTo: $withEffectFromTo, copyForwardedTo: $copyForwardedTo, signedBy: $signedBy)';
   }
 
   @override
@@ -272,12 +272,11 @@ class _$RosterImpl implements _Roster {
             other is _$RosterImpl &&
             const DeepCollectionEquality()
                 .equals(other._rosterEntries, _rosterEntries) &&
-            (identical(other.rosterName, rosterName) ||
-                other.rosterName == rosterName) &&
+            (identical(other.rosterID, rosterID) ||
+                other.rosterID == rosterID) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.withEffectFromTo, withEffectFromTo) ||
                 other.withEffectFromTo == withEffectFromTo) &&
-            (identical(other.notificationNumber, notificationNumber) ||
-                other.notificationNumber == notificationNumber) &&
             const DeepCollectionEquality()
                 .equals(other._copyForwardedTo, _copyForwardedTo) &&
             (identical(other.signedBy, signedBy) ||
@@ -289,9 +288,9 @@ class _$RosterImpl implements _Roster {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_rosterEntries),
-      rosterName,
+      rosterID,
+      name,
       withEffectFromTo,
-      notificationNumber,
       const DeepCollectionEquality().hash(_copyForwardedTo),
       signedBy);
 
@@ -306,15 +305,15 @@ class _$RosterImpl implements _Roster {
   TResult when<TResult extends Object?>({
     required TResult Function(
             Map<String, RosterEntry> rosterEntries,
-            String rosterName,
+            String rosterID,
+            String name,
             @DateTimeRangeConverter() DateTimeRange withEffectFromTo,
-            String notificationNumber,
             List<String> copyForwardedTo,
             String signedBy)
         raw,
   }) {
-    return raw(rosterEntries, rosterName, withEffectFromTo, notificationNumber,
-        copyForwardedTo, signedBy);
+    return raw(rosterEntries, rosterID, name, withEffectFromTo, copyForwardedTo,
+        signedBy);
   }
 
   @override
@@ -322,15 +321,15 @@ class _$RosterImpl implements _Roster {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
             Map<String, RosterEntry> rosterEntries,
-            String rosterName,
+            String rosterID,
+            String name,
             @DateTimeRangeConverter() DateTimeRange withEffectFromTo,
-            String notificationNumber,
             List<String> copyForwardedTo,
             String signedBy)?
         raw,
   }) {
-    return raw?.call(rosterEntries, rosterName, withEffectFromTo,
-        notificationNumber, copyForwardedTo, signedBy);
+    return raw?.call(rosterEntries, rosterID, name, withEffectFromTo,
+        copyForwardedTo, signedBy);
   }
 
   @override
@@ -338,17 +337,17 @@ class _$RosterImpl implements _Roster {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
             Map<String, RosterEntry> rosterEntries,
-            String rosterName,
+            String rosterID,
+            String name,
             @DateTimeRangeConverter() DateTimeRange withEffectFromTo,
-            String notificationNumber,
             List<String> copyForwardedTo,
             String signedBy)?
         raw,
     required TResult orElse(),
   }) {
     if (raw != null) {
-      return raw(rosterEntries, rosterName, withEffectFromTo,
-          notificationNumber, copyForwardedTo, signedBy);
+      return raw(rosterEntries, rosterID, name, withEffectFromTo,
+          copyForwardedTo, signedBy);
     }
     return orElse();
   }
@@ -392,9 +391,9 @@ class _$RosterImpl implements _Roster {
 abstract class _Roster implements Roster {
   const factory _Roster(
       {final Map<String, RosterEntry> rosterEntries,
-      final String rosterName,
+      final String rosterID,
+      final String name,
       @DateTimeRangeConverter() required final DateTimeRange withEffectFromTo,
-      final String notificationNumber,
       final List<String> copyForwardedTo,
       final String signedBy}) = _$RosterImpl;
 
@@ -403,12 +402,12 @@ abstract class _Roster implements Roster {
   @override
   Map<String, RosterEntry> get rosterEntries;
   @override
-  String get rosterName;
+  String get rosterID;
+  @override
+  String get name;
   @override
   @DateTimeRangeConverter()
   DateTimeRange get withEffectFromTo;
-  @override
-  String get notificationNumber;
   @override
   List<String> get copyForwardedTo;
   @override

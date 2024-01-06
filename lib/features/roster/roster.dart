@@ -8,21 +8,22 @@ class Roster with _$Roster {
   const factory Roster.raw({
     @Default(<String, RosterEntry>{})
     final Map<String, RosterEntry> rosterEntries,
-    @Default('') final String rosterName,
+    @Default('') final String rosterID,
+    @Default('') final String name,
     @DateTimeRangeConverter() required final DateTimeRange withEffectFromTo,
-    @Default('') final String notificationNumber,
     @Default(<String>[]) final List<String> copyForwardedTo,
     @Default('') final String signedBy,
   }) = _Roster;
   factory Roster.fromJson(json) => _$RosterFromJson(json);
   factory Roster() => Roster.raw(
+        rosterID: randomID,
         withEffectFromTo: DateTimeRange(
           start: DateTime.now(),
           end: DateTime.now(),
         ),
       );
-  factory Roster.fromName(String rosterName) {
-    return rostersManager.fromName(rosterName);
+  factory Roster.id(String rosterID) {
+    return rostersManager.id(rosterID);
   }
 }
 
@@ -70,16 +71,26 @@ class MedicalOfficers with _$MedicalOfficers {
 }
 
 class DateTimeRangeConverter
-    implements JsonConverter<DateTimeRange, Map<String, int>> {
+    implements JsonConverter<DateTimeRange, Map<String, dynamic>> {
   const DateTimeRangeConverter();
-  @override
-  DateTimeRange fromJson(Map<String, int> json) => DateTimeRange(
-        start: DateTime.fromMillisecondsSinceEpoch(json['start'] ?? 0),
-        end: DateTime.fromMillisecondsSinceEpoch(json['end'] ?? 0),
-      );
 
   @override
-  Map<String, int> toJson(DateTimeRange object) => {
+  DateTimeRange fromJson(Map<String, dynamic> json) {
+    final startEpoch = json['start'] as int?;
+    final endEpoch = json['end'] as int?;
+
+    if (startEpoch == null || endEpoch == null) {
+      throw FormatException('Invalid or missing datetime fields in JSON');
+    }
+
+    return DateTimeRange(
+      start: DateTime.fromMillisecondsSinceEpoch(startEpoch),
+      end: DateTime.fromMillisecondsSinceEpoch(endEpoch),
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson(DateTimeRange object) => {
         'start': object.start.millisecondsSinceEpoch,
         'end': object.end.millisecondsSinceEpoch,
       };

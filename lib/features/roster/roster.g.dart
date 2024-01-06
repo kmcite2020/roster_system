@@ -11,10 +11,10 @@ _$RosterImpl _$$RosterImplFromJson(Map<String, dynamic> json) => _$RosterImpl(
             (k, e) => MapEntry(k, RosterEntry.fromJson(e)),
           ) ??
           const <String, RosterEntry>{},
-      rosterName: json['rosterName'] as String? ?? '',
+      rosterID: json['rosterID'] as String? ?? '',
+      name: json['name'] as String? ?? '',
       withEffectFromTo: const DateTimeRangeConverter()
-          .fromJson(json['withEffectFromTo'] as Map<String, int>),
-      notificationNumber: json['notificationNumber'] as String? ?? '',
+          .fromJson(json['withEffectFromTo'] as Map<String, dynamic>),
       copyForwardedTo: (json['copyForwardedTo'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -25,10 +25,10 @@ _$RosterImpl _$$RosterImplFromJson(Map<String, dynamic> json) => _$RosterImpl(
 Map<String, dynamic> _$$RosterImplToJson(_$RosterImpl instance) =>
     <String, dynamic>{
       'rosterEntries': instance.rosterEntries,
-      'rosterName': instance.rosterName,
+      'rosterID': instance.rosterID,
+      'name': instance.name,
       'withEffectFromTo':
           const DateTimeRangeConverter().toJson(instance.withEffectFromTo),
-      'notificationNumber': instance.notificationNumber,
       'copyForwardedTo': instance.copyForwardedTo,
       'signedBy': instance.signedBy,
     };
