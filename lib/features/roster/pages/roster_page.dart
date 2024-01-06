@@ -1,101 +1,111 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/material.dart';
+import 'package:roster_system/features/roster/components/add_or_remove_medical_officer_dialog.dart';
+import 'package:roster_system/features/roster/components/roster_builder.dart';
+import 'package:roster_system/features/roster/roster_manager.dart';
 
-import 'package:roster_system/features/core/navigator.dart';
-import 'package:roster_system/features/roster/roster.dart';
-import 'package:roster_system/main.dart';
-import 'package:roster_system/presentation/features/ui.dart';
-
-import '../components/add_or_remove_medical_officer_dialog.dart';
-import '../roster_manager.dart';
+import '../../../main.dart';
 
 class RosterPage extends UI {
-  const RosterPage({super.key});
-
+  const RosterPage({
+    required this.rosterName,
+  });
+  final String rosterName;
   @override
-  Widget build(BuildContext context) {
-    final roster = rosterManager.roster;
-    return Scaffold(
-      appBar: AppBar(
-        title: roster.rosterName.text(),
-      ),
-      body: ListView(
-        children: [
-          roster.withEffectFromTo.str().text().pad(),
-          Table(
-            border: TableBorder.all(color: Colors.red),
-            children: [
-              TableRow(
-                children: [
-                  'DAY/SHIFT'.text().center().pad(),
-                  ...ShiftType.values
-                      .map((shift) => shift.name.toUpperCase().text().pad())
-                      .toList(),
-                ],
-              ),
-              ...DayType.values.map(
-                (day) {
-                  return TableRow(
-                    children: [
-                      day.name.toUpperCase().text().pad(),
-                      ...ShiftType.values.map(
-                        (shift) {
-                          final medicalOfficers = roster.rosterEntries.values
-                              .where(
-                                (entry) =>
-                                    entry.day == day && entry.shift == shift,
-                              )
-                              .expand(
-                                (entry) => entry.medicalOfficers.values,
-                              )
-                              .toList();
+  Widget build(context) {
+    return RosterBuilder(
+        rosterName: '',
+        builder: (roster) {
+          return Scaffold(
+            appBar: AppBar(
+              title: roster.rosterName.text(),
+            ),
+            body: ListView(
+              children: [
+                roster.withEffectFromTo.str().text().pad(),
+                Table(
+                  border: TableBorder.all(color: settingsManager.materialColor),
+                  children: [
+                    TableRow(
+                      children: [
+                        'DAY/SHIFT'.text().center().pad(),
+                        ...ShiftType.values
+                            .map((shift) =>
+                                shift.name.toUpperCase().text().pad())
+                            .toList(),
+                      ],
+                    ),
+                    ...DayType.values.map(
+                      (dayType) {
+                        return TableRow(
+                          children: [
+                            dayType.name.toUpperCase().text().pad(),
+                            ...ShiftType.values.map(
+                              (shiftType) {
+                                final medicalOfficers =
+                                    roster.rosterEntries.values
+                                        .where(
+                                          (entry) =>
+                                              entry.dayType == dayType &&
+                                              entry.shiftType == shiftType,
+                                        )
+                                        .expand(
+                                          (entry) =>
+                                              entry.medicalOfficerIDs.map(
+                                            (eachMedicalOfficerID) =>
+                                                MedicalOfficer.fromID(
+                                              eachMedicalOfficerID,
+                                            ),
+                                          ),
+                                        )
+                                        .toList();
 
-                          return OutlinedButton(
-                            onPressed: () {
-                              print(shift);
-                              print(day);
-                              navigator.toDialog(
-                                AddOrRemoveMedicalOfficerDialog(
-                                  medicalOfficers: medicalOfficers,
-                                  dayType: day,
-                                  shiftType: shift,
-                                ),
-                              );
-                            },
-                            child: Column(
-                              children: medicalOfficers.map<Widget>(
-                                (eachMedicalOfficer) {
-                                  return Wrap(
-                                    children: [
-                                      ElevatedButton(
-                                        onPressed: () {
-                                          // removeMedicalOfficerFromRosterEntry(
-                                          //   medicalOfficer: eachMedicalOfficer,
-                                          //   dayType: day,
-                                          //   shiftType: shift,
-                                          // );
-                                        },
-                                        child: eachMedicalOfficer.name
-                                            .toUpperCase()
-                                            .text(),
+                                return OutlinedButton(
+                                  onPressed: () {
+                                    print(shiftType);
+                                    print(dayType);
+                                    navigator.toDialog(
+                                      AddOrRemoveMedicalOfficerDialog(
+                                        medicalOfficers: medicalOfficers,
+                                        dayType: dayType,
+                                        shiftType: shiftType,
                                       ),
-                                    ],
-                                  );
-                                },
-                              ).toList(),
-                            ),
-                          ).pad();
-                        },
-                      ).toList(),
-                    ],
-                  );
-                },
-              ).toList(),
-            ],
-          ).pad(),
-        ],
-      ),
-    );
+                                    );
+                                  },
+                                  child: Column(
+                                    children: medicalOfficers.map<Widget>(
+                                      (eachMedicalOfficer) {
+                                        return Wrap(
+                                          children: [
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                // removeMedicalOfficerFromRosterEntry(
+                                                //   medicalOfficer: eachMedicalOfficer,
+                                                //   dayType: day,
+                                                //   shiftType: shift,
+                                                // );
+                                              },
+                                              child: eachMedicalOfficer.name
+                                                  .toUpperCase()
+                                                  .text(),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    ).toList(),
+                                  ),
+                                ).pad();
+                              },
+                            ).toList(),
+                          ],
+                        );
+                      },
+                    ).toList(),
+                  ],
+                ).pad(),
+              ],
+            ),
+          );
+        });
   }
 }
 
@@ -107,13 +117,13 @@ void addMedicalOfficer({
   final rosterEntryOfInterest =
       rosterManager.roster.rosterEntries.values.firstWhere(
     (eachRosterEntry) =>
-        eachRosterEntry.day == dayType && eachRosterEntry.shift == shiftType,
+        eachRosterEntry.dayType == dayType &&
+        eachRosterEntry.shiftType == shiftType,
   );
-  final currentOfficers = rosterEntryOfInterest.medicalOfficers;
+  final currentOfficers = rosterEntryOfInterest.medicalOfficerIDs;
   rosterManager.setRosterEntry(
     rosterEntryOfInterest.copyWith(
-      medicalOfficers: Map.of(currentOfficers)
-        ..[medicalOfficer.id] = medicalOfficer,
+      medicalOfficerIDs: currentOfficers..add(medicalOfficer.id),
     ),
   );
 }
@@ -126,12 +136,13 @@ void removeMedicalOfficerFromRosterEntry({
   final rosterEntryOfInterest =
       rosterManager.roster.rosterEntries.values.firstWhere(
     (eachRosterEntry) =>
-        eachRosterEntry.day == dayType && eachRosterEntry.shift == shiftType,
+        eachRosterEntry.dayType == dayType &&
+        eachRosterEntry.shiftType == shiftType,
   );
-  final currentOfficers = rosterEntryOfInterest.medicalOfficers;
+  final currentOfficers = rosterEntryOfInterest.medicalOfficerIDs;
   rosterManager.setRosterEntry(
     rosterEntryOfInterest.copyWith(
-      medicalOfficers: Map.of(currentOfficers)..remove(medicalOfficer.id),
+      medicalOfficerIDs: List.of(currentOfficers)..remove(medicalOfficer.id),
     ),
   );
 }
@@ -153,10 +164,10 @@ Map<String, RosterEntry> createRosterEntries() {
     for (var shift in ShiftType.values) {
       String key = randomID;
       rosterEntries[key] = RosterEntry(
-        id: key,
-        day: day,
-        shift: shift,
-        medicalOfficers: {},
+        rosterEntryID: key,
+        dayType: day,
+        shiftType: shift,
+        medicalOfficerIDs: [],
       );
     }
   }

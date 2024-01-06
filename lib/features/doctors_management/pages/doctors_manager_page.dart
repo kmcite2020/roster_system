@@ -1,12 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:roster_system/features/doctors_management/doctor_editor/doctor_editor_page.dart';
-import 'package:roster_system/presentation/features/ui.dart';
-import 'package:states_rebuilder/states_rebuilder.dart';
+import '../../../main.dart';
 
-import '../../core/navigator.dart';
-import 'doctors_manager.dart';
-
-class DoctorsManagerPage extends ReactiveStatelessWidget {
+class DoctorsManagerPage extends UI {
   const DoctorsManagerPage({super.key});
 
   @override

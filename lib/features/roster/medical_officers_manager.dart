@@ -6,15 +6,7 @@ final medicalOfficersManager = MedicalOfficersManager();
 
 class MedicalOfficersManager {
   final medicalOfficersRM = RM.inject(
-    () => MedicalOfficers(
-      medicalOfficers: [
-        MedicalOfficer(name: 'Farooq'),
-        MedicalOfficer(name: 'Adnan'),
-        MedicalOfficer(name: 'Wisal'),
-        MedicalOfficer(name: 'Ayaz'),
-        MedicalOfficer(name: 'Junaid'),
-      ],
-    ),
+    () => MedicalOfficers(),
     persist: () => PersistState(
       key: 'medicalOfficers',
       toJson: (s) => jsonEncode(s),
@@ -22,22 +14,18 @@ class MedicalOfficersManager {
     ),
   );
 
-  MedicalOfficers get medicalOfficers => medicalOfficersRM.state;
-  set medicalOfficers(MedicalOfficers _) => medicalOfficersRM.state = _;
-  List<MedicalOfficer> get listOfMedicalOfficers =>
-      medicalOfficers.medicalOfficers;
+  MedicalOfficers get state => medicalOfficersRM.state;
+  set state(MedicalOfficers _) => medicalOfficersRM.state = _;
+
   void addMedicalOfficer(MedicalOfficer medicalOfficer) {
-    medicalOfficers = medicalOfficers.copyWith(
-      medicalOfficers: List.of(listOfMedicalOfficers)..add(medicalOfficer),
+    state = state.copyWith(
+      cache: Map.of(state.cache)..[medicalOfficer.id] = medicalOfficer,
     );
   }
 
   void removeMedicalOfficer(MedicalOfficer medicalOfficer) {
-    medicalOfficers = medicalOfficers.copyWith(
-      medicalOfficers: List.of(listOfMedicalOfficers)
-        ..removeWhere(
-          (eachMedicalOfficer) => eachMedicalOfficer.id == medicalOfficer.id,
-        ),
+    state = state.copyWith(
+      cache: Map.of(state.cache)..remove(medicalOfficer.id),
     );
   }
 }

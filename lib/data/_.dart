@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:states_rebuilder/states_rebuilder.dart';
+
+import '../main.dart';
 
 void main(List<String> args) {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends UI {
   const MyApp({Key? key}) : super(key: key);
 
   @override

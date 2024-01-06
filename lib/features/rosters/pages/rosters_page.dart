@@ -1,15 +1,6 @@
-// import 'package:flutter/material.dart';
-// import 'package:project_roster/presentation/blocs/blocs.dart';
-// import 'package:project_roster/presentation/ui/ui.dart';
-// import 'package:states_rebuilder/states_rebuilder.dart';
+import '../../../main.dart';
 
-import 'package:flutter/material.dart';
-import 'package:roster_system/presentation/features/ui.dart';
-import 'package:states_rebuilder/states_rebuilder.dart';
-
-import '../pages/rosters_ui/rosters_bloc.dart';
-
-class RostersPage extends ReactiveStatelessWidget {
+class RostersPage extends UI {
   const RostersPage({super.key});
 
   @override
@@ -19,15 +10,29 @@ class RostersPage extends ReactiveStatelessWidget {
         title: 'Rosters'.text(),
       ),
       body: ListView.builder(
-        itemCount: rostersBloc.rosters.length,
-        itemBuilder: (context, index) => rostersBloc.rosters[index].text(),
+        itemCount: rostersManager.state.cache.length,
+        itemBuilder: (context, index) {
+          final roster = rostersManager.state.cache.values.toList()[index];
+          return ElevatedButton(
+            onPressed: () {
+              navigator.to(
+                RosterPage(
+                  rosterName: roster.rosterName,
+                ),
+              );
+            },
+            child: roster.text(),
+          );
+        },
       ),
       floatingActionButton: ButtonBar(
         children: [
           FloatingActionButton(
             heroTag: randomID,
             onPressed: () {
-              // navigator.to(Routes.days);
+              rostersManager.setRoster(
+                Roster().copyWith(rosterName: randomID),
+              );
             },
             child: Icon(Icons.data_array_sharp),
           ),

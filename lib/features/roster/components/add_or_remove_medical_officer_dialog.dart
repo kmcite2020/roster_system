@@ -1,13 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:flutter/material.dart';
-import 'package:roster_system/features/roster/medical_officers_manager.dart';
-import 'package:roster_system/features/roster/pages/roster_page.dart';
-import 'package:roster_system/features/roster/roster.dart';
-import 'package:roster_system/main.dart';
-import 'package:roster_system/presentation/features/ui.dart';
-
-import '../../core/navigator.dart';
+import '../../../main.dart';
 
 class AddOrRemoveMedicalOfficerDialog extends UI {
   const AddOrRemoveMedicalOfficerDialog({
@@ -29,7 +22,7 @@ class AddOrRemoveMedicalOfficerDialog extends UI {
             ? [
                 "no medical officers found for the current duty".text().pad(),
                 Divider(height: 0),
-                ...medicalOfficersManager.listOfMedicalOfficers.map(
+                ...medicalOfficersManager.state.cache.values.map(
                   (everyMedicalOfficer) => ElevatedButton(
                     onPressed: () {
                       addMedicalOfficer(

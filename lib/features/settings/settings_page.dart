@@ -1,6 +1,6 @@
-part of 'settings.dart';
+import '../../main.dart';
 
-class SettingsPage extends ReactiveStatelessWidget {
+class SettingsPage extends UI {
   const SettingsPage({super.key});
 
   @override
@@ -13,8 +13,6 @@ class SettingsPage extends ReactiveStatelessWidget {
         shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
         children: [
-          // DutyManagerWidget(),
-          // ClearRosterButton(),
           DropdownButtonFormField(
             value: settingsManager.themeMode,
             items: ThemeMode.values.map(

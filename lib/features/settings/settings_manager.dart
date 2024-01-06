@@ -1,4 +1,4 @@
-part of 'settings.dart';
+import '../../main.dart';
 
 final SettingsManager settingsManager = SettingsManager();
 

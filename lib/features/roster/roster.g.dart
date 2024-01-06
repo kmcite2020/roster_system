@@ -35,22 +35,23 @@ Map<String, dynamic> _$$RosterImplToJson(_$RosterImpl instance) =>
 
 _$RosterEntryImpl _$$RosterEntryImplFromJson(Map<String, dynamic> json) =>
     _$RosterEntryImpl(
-      id: json['id'] as String? ?? '',
-      day: $enumDecodeNullable(_$DayTypeEnumMap, json['day']) ?? DayType.mon,
-      shift: $enumDecodeNullable(_$ShiftTypeEnumMap, json['shift']) ??
+      rosterEntryID: json['rosterEntryID'] as String? ?? '',
+      dayType:
+          $enumDecodeNullable(_$DayTypeEnumMap, json['dayType']) ?? DayType.mon,
+      shiftType: $enumDecodeNullable(_$ShiftTypeEnumMap, json['shiftType']) ??
           ShiftType.morning,
-      medicalOfficers: (json['medicalOfficers'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, MedicalOfficer.fromJson(e)),
-          ) ??
-          const <String, MedicalOfficer>{},
+      medicalOfficerIDs: (json['medicalOfficerIDs'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          const <String>[],
     );
 
 Map<String, dynamic> _$$RosterEntryImplToJson(_$RosterEntryImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'day': _$DayTypeEnumMap[instance.day]!,
-      'shift': _$ShiftTypeEnumMap[instance.shift]!,
-      'medicalOfficers': instance.medicalOfficers,
+      'rosterEntryID': instance.rosterEntryID,
+      'dayType': _$DayTypeEnumMap[instance.dayType]!,
+      'shiftType': _$ShiftTypeEnumMap[instance.shiftType]!,
+      'medicalOfficerIDs': instance.medicalOfficerIDs,
     };
 
 const _$DayTypeEnumMap = {
@@ -89,14 +90,14 @@ Map<String, dynamic> _$$MedicalOfficerImplToJson(
 _$MedicalOfficersImpl _$$MedicalOfficersImplFromJson(
         Map<String, dynamic> json) =>
     _$MedicalOfficersImpl(
-      medicalOfficers: (json['medicalOfficers'] as List<dynamic>?)
-              ?.map(MedicalOfficer.fromJson)
-              .toList() ??
-          const <MedicalOfficer>[],
+      cache: (json['cache'] as Map<String, dynamic>?)?.map(
+            (k, e) => MapEntry(k, MedicalOfficer.fromJson(e)),
+          ) ??
+          const <String, MedicalOfficer>{},
     );
 
 Map<String, dynamic> _$$MedicalOfficersImplToJson(
         _$MedicalOfficersImpl instance) =>
     <String, dynamic>{
-      'medicalOfficers': instance.medicalOfficers,
+      'cache': instance.cache,
     };

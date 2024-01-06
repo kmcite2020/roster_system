@@ -1,6 +1,6 @@
 import 'package:states_rebuilder/states_rebuilder.dart';
 
-import '../doctor_editor/doctor.dart';
+import 'doctor.dart';
 
 final doctorsManager = DoctorsManager();
 

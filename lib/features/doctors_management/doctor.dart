@@ -3,12 +3,12 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:roster_system/features/core/extensions.dart';
 
-import '../../../presentation/features/ui.dart';
-import '../doctors_manager/doctors_manager.dart';
+import 'package:roster_system/features/doctors_management/doctors_manager.dart';
 
-part 'doctor.g.dart';
 part 'doctor.freezed.dart';
+part 'doctor.g.dart';
 
 @freezed
 class Doctor with _$Doctor {
@@ -34,6 +34,7 @@ class Doctor with _$Doctor {
 
   factory Doctor.fromJson(json) => _$DoctorFromJson(json);
   factory Doctor.get({required String id}) => doctorsManager.get(id);
+
   static List<Doctor> fromListJson(String source) {
     final List result = json.decode(source) as List;
     return result.map((e) => Doctor.fromJson(e)).toList();

@@ -1,11 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:roster_system/presentation/features/ui.dart';
-import 'package:states_rebuilder/states_rebuilder.dart';
-
-import '../../../../features/settings/settings.dart';
-import '../doctors_manager/doctors_manager.dart';
-import 'doctor.dart';
-import 'doctor_editor.dart';
+import '../../../main.dart';
 
 class DoctorEditorPage extends ReactiveStatelessWidget {
   const DoctorEditorPage({required this.id});
@@ -105,8 +98,10 @@ class DoctorEditorPage extends ReactiveStatelessWidget {
                       ).pad(),
                       subtitle: Column(
                         children: [
-                          editDoctor.name.text(2.3),
-                          editDoctor.qualifications.text(1.3).pad(),
+                          editDoctor.name.text(textScaleFactor: 2.3),
+                          editDoctor.qualifications
+                              .text(textScaleFactor: 1.3)
+                              .pad(),
                           editDoctor.contactDetails.text().pad(),
                           editDoctor.departments.text().pad(),
                           Icon(

@@ -1,23 +1,37 @@
-import 'package:flex_color_scheme/flex_color_scheme.dart';
-import 'package:flutter/material.dart';
-import 'package:roster_system/features/roster/pages/roster_page.dart';
-import 'package:states_rebuilder/states_rebuilder.dart';
-import 'domain/repositories/repositories.dart';
-import 'features/core/navigator.dart';
-import 'features/settings/settings.dart';
+import 'main.dart';
 
-// final directoryRM = RM.injectFuture(getApplicationDocumentsDirectory);
+export 'dart:convert';
+export 'package:colornames/colornames.dart';
+export 'package:flex_color_scheme/flex_color_scheme.dart';
+export 'package:flutter/material.dart';
+export 'package:freezed_annotation/freezed_annotation.dart';
+export 'package:hive_flutter/hive_flutter.dart';
+export 'package:roster_system/features/core/extensions.dart';
+export 'package:roster_system/features/core/hive_storage.dart';
+export 'package:roster_system/features/core/navigator.dart';
+export 'package:roster_system/features/doctors_management/doctor.dart';
+export 'package:roster_system/features/doctors_management/doctor_editor.dart';
+export 'package:roster_system/features/doctors_management/pages/doctor_editor_page.dart';
+export 'package:roster_system/features/doctors_management/doctors_manager.dart';
+export 'package:roster_system/features/roster/medical_officers_manager.dart';
+export 'package:roster_system/features/roster/pages/roster_page.dart';
+export 'package:roster_system/features/roster/roster.dart';
+export 'package:roster_system/features/rosters/pages/rosters_page.dart';
+export 'package:roster_system/features/settings/settings.dart';
+export 'package:roster_system/features/settings/settings_manager.dart';
+export 'package:states_rebuilder/states_rebuilder.dart';
+export 'package:roster_system/features/rosters/rosters_manager.dart';
 
 typedef UI = ReactiveStatelessWidget;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await RM.storageInitializer(PersistStoreImpl());
-  runApp(const MyApp());
+  await RM.storageInitializer(HiveStorage());
+  runApp(const App());
 }
 
-class MyApp extends UI {
-  const MyApp({super.key});
+class App extends UI {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +41,7 @@ class MyApp extends UI {
       theme: themes.theme,
       darkTheme: themes.darkTheme,
       themeMode: settingsManager.themeMode,
-      home: RosterPage(),
+      home: RostersPage(),
     );
   }
 }

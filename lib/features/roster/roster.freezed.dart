@@ -28,7 +28,59 @@ mixin _$Roster {
   String get notificationNumber => throw _privateConstructorUsedError;
   List<String> get copyForwardedTo => throw _privateConstructorUsedError;
   String get signedBy => throw _privateConstructorUsedError;
-
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            Map<String, RosterEntry> rosterEntries,
+            String rosterName,
+            @DateTimeRangeConverter() DateTimeRange withEffectFromTo,
+            String notificationNumber,
+            List<String> copyForwardedTo,
+            String signedBy)
+        raw,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            Map<String, RosterEntry> rosterEntries,
+            String rosterName,
+            @DateTimeRangeConverter() DateTimeRange withEffectFromTo,
+            String notificationNumber,
+            List<String> copyForwardedTo,
+            String signedBy)?
+        raw,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            Map<String, RosterEntry> rosterEntries,
+            String rosterName,
+            @DateTimeRangeConverter() DateTimeRange withEffectFromTo,
+            String notificationNumber,
+            List<String> copyForwardedTo,
+            String signedBy)?
+        raw,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Roster value) raw,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Roster value)? raw,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Roster value)? raw,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $RosterCopyWith<Roster> get copyWith => throw _privateConstructorUsedError;
@@ -210,7 +262,7 @@ class _$RosterImpl implements _Roster {
 
   @override
   String toString() {
-    return 'Roster(rosterEntries: $rosterEntries, rosterName: $rosterName, withEffectFromTo: $withEffectFromTo, notificationNumber: $notificationNumber, copyForwardedTo: $copyForwardedTo, signedBy: $signedBy)';
+    return 'Roster.raw(rosterEntries: $rosterEntries, rosterName: $rosterName, withEffectFromTo: $withEffectFromTo, notificationNumber: $notificationNumber, copyForwardedTo: $copyForwardedTo, signedBy: $signedBy)';
   }
 
   @override
@@ -248,6 +300,86 @@ class _$RosterImpl implements _Roster {
   @pragma('vm:prefer-inline')
   _$$RosterImplCopyWith<_$RosterImpl> get copyWith =>
       __$$RosterImplCopyWithImpl<_$RosterImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            Map<String, RosterEntry> rosterEntries,
+            String rosterName,
+            @DateTimeRangeConverter() DateTimeRange withEffectFromTo,
+            String notificationNumber,
+            List<String> copyForwardedTo,
+            String signedBy)
+        raw,
+  }) {
+    return raw(rosterEntries, rosterName, withEffectFromTo, notificationNumber,
+        copyForwardedTo, signedBy);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            Map<String, RosterEntry> rosterEntries,
+            String rosterName,
+            @DateTimeRangeConverter() DateTimeRange withEffectFromTo,
+            String notificationNumber,
+            List<String> copyForwardedTo,
+            String signedBy)?
+        raw,
+  }) {
+    return raw?.call(rosterEntries, rosterName, withEffectFromTo,
+        notificationNumber, copyForwardedTo, signedBy);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            Map<String, RosterEntry> rosterEntries,
+            String rosterName,
+            @DateTimeRangeConverter() DateTimeRange withEffectFromTo,
+            String notificationNumber,
+            List<String> copyForwardedTo,
+            String signedBy)?
+        raw,
+    required TResult orElse(),
+  }) {
+    if (raw != null) {
+      return raw(rosterEntries, rosterName, withEffectFromTo,
+          notificationNumber, copyForwardedTo, signedBy);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Roster value) raw,
+  }) {
+    return raw(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Roster value)? raw,
+  }) {
+    return raw?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Roster value)? raw,
+    required TResult orElse(),
+  }) {
+    if (raw != null) {
+      return raw(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
@@ -293,11 +425,10 @@ RosterEntry _$RosterEntryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RosterEntry {
-  String get id => throw _privateConstructorUsedError;
-  DayType get day => throw _privateConstructorUsedError;
-  ShiftType get shift => throw _privateConstructorUsedError;
-  Map<String, MedicalOfficer> get medicalOfficers =>
-      throw _privateConstructorUsedError;
+  String get rosterEntryID => throw _privateConstructorUsedError;
+  DayType get dayType => throw _privateConstructorUsedError;
+  ShiftType get shiftType => throw _privateConstructorUsedError;
+  List<String> get medicalOfficerIDs => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -312,10 +443,10 @@ abstract class $RosterEntryCopyWith<$Res> {
       _$RosterEntryCopyWithImpl<$Res, RosterEntry>;
   @useResult
   $Res call(
-      {String id,
-      DayType day,
-      ShiftType shift,
-      Map<String, MedicalOfficer> medicalOfficers});
+      {String rosterEntryID,
+      DayType dayType,
+      ShiftType shiftType,
+      List<String> medicalOfficerIDs});
 }
 
 /// @nodoc
@@ -331,28 +462,28 @@ class _$RosterEntryCopyWithImpl<$Res, $Val extends RosterEntry>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? day = null,
-    Object? shift = null,
-    Object? medicalOfficers = null,
+    Object? rosterEntryID = null,
+    Object? dayType = null,
+    Object? shiftType = null,
+    Object? medicalOfficerIDs = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      rosterEntryID: null == rosterEntryID
+          ? _value.rosterEntryID
+          : rosterEntryID // ignore: cast_nullable_to_non_nullable
               as String,
-      day: null == day
-          ? _value.day
-          : day // ignore: cast_nullable_to_non_nullable
+      dayType: null == dayType
+          ? _value.dayType
+          : dayType // ignore: cast_nullable_to_non_nullable
               as DayType,
-      shift: null == shift
-          ? _value.shift
-          : shift // ignore: cast_nullable_to_non_nullable
+      shiftType: null == shiftType
+          ? _value.shiftType
+          : shiftType // ignore: cast_nullable_to_non_nullable
               as ShiftType,
-      medicalOfficers: null == medicalOfficers
-          ? _value.medicalOfficers
-          : medicalOfficers // ignore: cast_nullable_to_non_nullable
-              as Map<String, MedicalOfficer>,
+      medicalOfficerIDs: null == medicalOfficerIDs
+          ? _value.medicalOfficerIDs
+          : medicalOfficerIDs // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -366,10 +497,10 @@ abstract class _$$RosterEntryImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      DayType day,
-      ShiftType shift,
-      Map<String, MedicalOfficer> medicalOfficers});
+      {String rosterEntryID,
+      DayType dayType,
+      ShiftType shiftType,
+      List<String> medicalOfficerIDs});
 }
 
 /// @nodoc
@@ -383,28 +514,28 @@ class __$$RosterEntryImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? day = null,
-    Object? shift = null,
-    Object? medicalOfficers = null,
+    Object? rosterEntryID = null,
+    Object? dayType = null,
+    Object? shiftType = null,
+    Object? medicalOfficerIDs = null,
   }) {
     return _then(_$RosterEntryImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      rosterEntryID: null == rosterEntryID
+          ? _value.rosterEntryID
+          : rosterEntryID // ignore: cast_nullable_to_non_nullable
               as String,
-      day: null == day
-          ? _value.day
-          : day // ignore: cast_nullable_to_non_nullable
+      dayType: null == dayType
+          ? _value.dayType
+          : dayType // ignore: cast_nullable_to_non_nullable
               as DayType,
-      shift: null == shift
-          ? _value.shift
-          : shift // ignore: cast_nullable_to_non_nullable
+      shiftType: null == shiftType
+          ? _value.shiftType
+          : shiftType // ignore: cast_nullable_to_non_nullable
               as ShiftType,
-      medicalOfficers: null == medicalOfficers
-          ? _value._medicalOfficers
-          : medicalOfficers // ignore: cast_nullable_to_non_nullable
-              as Map<String, MedicalOfficer>,
+      medicalOfficerIDs: null == medicalOfficerIDs
+          ? _value._medicalOfficerIDs
+          : medicalOfficerIDs // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -413,37 +544,37 @@ class __$$RosterEntryImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$RosterEntryImpl implements _RosterEntry {
   const _$RosterEntryImpl(
-      {this.id = '',
-      this.day = DayType.mon,
-      this.shift = ShiftType.morning,
-      final Map<String, MedicalOfficer> medicalOfficers =
-          const <String, MedicalOfficer>{}})
-      : _medicalOfficers = medicalOfficers;
+      {this.rosterEntryID = '',
+      this.dayType = DayType.mon,
+      this.shiftType = ShiftType.morning,
+      final List<String> medicalOfficerIDs = const <String>[]})
+      : _medicalOfficerIDs = medicalOfficerIDs;
 
   factory _$RosterEntryImpl.fromJson(Map<String, dynamic> json) =>
       _$$RosterEntryImplFromJson(json);
 
   @override
   @JsonKey()
-  final String id;
+  final String rosterEntryID;
   @override
   @JsonKey()
-  final DayType day;
+  final DayType dayType;
   @override
   @JsonKey()
-  final ShiftType shift;
-  final Map<String, MedicalOfficer> _medicalOfficers;
+  final ShiftType shiftType;
+  final List<String> _medicalOfficerIDs;
   @override
   @JsonKey()
-  Map<String, MedicalOfficer> get medicalOfficers {
-    if (_medicalOfficers is EqualUnmodifiableMapView) return _medicalOfficers;
+  List<String> get medicalOfficerIDs {
+    if (_medicalOfficerIDs is EqualUnmodifiableListView)
+      return _medicalOfficerIDs;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_medicalOfficers);
+    return EqualUnmodifiableListView(_medicalOfficerIDs);
   }
 
   @override
   String toString() {
-    return 'RosterEntry(id: $id, day: $day, shift: $shift, medicalOfficers: $medicalOfficers)';
+    return 'RosterEntry(rosterEntryID: $rosterEntryID, dayType: $dayType, shiftType: $shiftType, medicalOfficerIDs: $medicalOfficerIDs)';
   }
 
   @override
@@ -451,17 +582,19 @@ class _$RosterEntryImpl implements _RosterEntry {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RosterEntryImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.day, day) || other.day == day) &&
-            (identical(other.shift, shift) || other.shift == shift) &&
+            (identical(other.rosterEntryID, rosterEntryID) ||
+                other.rosterEntryID == rosterEntryID) &&
+            (identical(other.dayType, dayType) || other.dayType == dayType) &&
+            (identical(other.shiftType, shiftType) ||
+                other.shiftType == shiftType) &&
             const DeepCollectionEquality()
-                .equals(other._medicalOfficers, _medicalOfficers));
+                .equals(other._medicalOfficerIDs, _medicalOfficerIDs));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, day, shift,
-      const DeepCollectionEquality().hash(_medicalOfficers));
+  int get hashCode => Object.hash(runtimeType, rosterEntryID, dayType,
+      shiftType, const DeepCollectionEquality().hash(_medicalOfficerIDs));
 
   @JsonKey(ignore: true)
   @override
@@ -479,22 +612,22 @@ class _$RosterEntryImpl implements _RosterEntry {
 
 abstract class _RosterEntry implements RosterEntry {
   const factory _RosterEntry(
-      {final String id,
-      final DayType day,
-      final ShiftType shift,
-      final Map<String, MedicalOfficer> medicalOfficers}) = _$RosterEntryImpl;
+      {final String rosterEntryID,
+      final DayType dayType,
+      final ShiftType shiftType,
+      final List<String> medicalOfficerIDs}) = _$RosterEntryImpl;
 
   factory _RosterEntry.fromJson(Map<String, dynamic> json) =
       _$RosterEntryImpl.fromJson;
 
   @override
-  String get id;
+  String get rosterEntryID;
   @override
-  DayType get day;
+  DayType get dayType;
   @override
-  ShiftType get shift;
+  ShiftType get shiftType;
   @override
-  Map<String, MedicalOfficer> get medicalOfficers;
+  List<String> get medicalOfficerIDs;
   @override
   @JsonKey(ignore: true)
   _$$RosterEntryImplCopyWith<_$RosterEntryImpl> get copyWith =>
@@ -704,8 +837,7 @@ MedicalOfficers _$MedicalOfficersFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MedicalOfficers {
-  List<MedicalOfficer> get medicalOfficers =>
-      throw _privateConstructorUsedError;
+  Map<String, MedicalOfficer> get cache => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -719,7 +851,7 @@ abstract class $MedicalOfficersCopyWith<$Res> {
           MedicalOfficers value, $Res Function(MedicalOfficers) then) =
       _$MedicalOfficersCopyWithImpl<$Res, MedicalOfficers>;
   @useResult
-  $Res call({List<MedicalOfficer> medicalOfficers});
+  $Res call({Map<String, MedicalOfficer> cache});
 }
 
 /// @nodoc
@@ -735,13 +867,13 @@ class _$MedicalOfficersCopyWithImpl<$Res, $Val extends MedicalOfficers>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? medicalOfficers = null,
+    Object? cache = null,
   }) {
     return _then(_value.copyWith(
-      medicalOfficers: null == medicalOfficers
-          ? _value.medicalOfficers
-          : medicalOfficers // ignore: cast_nullable_to_non_nullable
-              as List<MedicalOfficer>,
+      cache: null == cache
+          ? _value.cache
+          : cache // ignore: cast_nullable_to_non_nullable
+              as Map<String, MedicalOfficer>,
     ) as $Val);
   }
 }
@@ -754,7 +886,7 @@ abstract class _$$MedicalOfficersImplCopyWith<$Res>
       __$$MedicalOfficersImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<MedicalOfficer> medicalOfficers});
+  $Res call({Map<String, MedicalOfficer> cache});
 }
 
 /// @nodoc
@@ -768,13 +900,13 @@ class __$$MedicalOfficersImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? medicalOfficers = null,
+    Object? cache = null,
   }) {
     return _then(_$MedicalOfficersImpl(
-      medicalOfficers: null == medicalOfficers
-          ? _value._medicalOfficers
-          : medicalOfficers // ignore: cast_nullable_to_non_nullable
-              as List<MedicalOfficer>,
+      cache: null == cache
+          ? _value._cache
+          : cache // ignore: cast_nullable_to_non_nullable
+              as Map<String, MedicalOfficer>,
     ));
   }
 }
@@ -783,24 +915,25 @@ class __$$MedicalOfficersImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MedicalOfficersImpl implements _MedicalOfficers {
   const _$MedicalOfficersImpl(
-      {final List<MedicalOfficer> medicalOfficers = const <MedicalOfficer>[]})
-      : _medicalOfficers = medicalOfficers;
+      {final Map<String, MedicalOfficer> cache =
+          const <String, MedicalOfficer>{}})
+      : _cache = cache;
 
   factory _$MedicalOfficersImpl.fromJson(Map<String, dynamic> json) =>
       _$$MedicalOfficersImplFromJson(json);
 
-  final List<MedicalOfficer> _medicalOfficers;
+  final Map<String, MedicalOfficer> _cache;
   @override
   @JsonKey()
-  List<MedicalOfficer> get medicalOfficers {
-    if (_medicalOfficers is EqualUnmodifiableListView) return _medicalOfficers;
+  Map<String, MedicalOfficer> get cache {
+    if (_cache is EqualUnmodifiableMapView) return _cache;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_medicalOfficers);
+    return EqualUnmodifiableMapView(_cache);
   }
 
   @override
   String toString() {
-    return 'MedicalOfficers(medicalOfficers: $medicalOfficers)';
+    return 'MedicalOfficers(cache: $cache)';
   }
 
   @override
@@ -808,14 +941,13 @@ class _$MedicalOfficersImpl implements _MedicalOfficers {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MedicalOfficersImpl &&
-            const DeepCollectionEquality()
-                .equals(other._medicalOfficers, _medicalOfficers));
+            const DeepCollectionEquality().equals(other._cache, _cache));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_medicalOfficers));
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_cache));
 
   @JsonKey(ignore: true)
   @override
@@ -833,14 +965,14 @@ class _$MedicalOfficersImpl implements _MedicalOfficers {
 }
 
 abstract class _MedicalOfficers implements MedicalOfficers {
-  const factory _MedicalOfficers({final List<MedicalOfficer> medicalOfficers}) =
+  const factory _MedicalOfficers({final Map<String, MedicalOfficer> cache}) =
       _$MedicalOfficersImpl;
 
   factory _MedicalOfficers.fromJson(Map<String, dynamic> json) =
       _$MedicalOfficersImpl.fromJson;
 
   @override
-  List<MedicalOfficer> get medicalOfficers;
+  Map<String, MedicalOfficer> get cache;
   @override
   @JsonKey(ignore: true)
   _$$MedicalOfficersImplCopyWith<_$MedicalOfficersImpl> get copyWith =>
