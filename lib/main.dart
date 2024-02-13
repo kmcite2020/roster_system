@@ -20,7 +20,6 @@ export 'package:roster_system/features/rosters/pages/rosters_page.dart';
 export 'package:roster_system/features/settings/settings.dart';
 export 'package:roster_system/features/settings/settings_manager.dart';
 export 'package:states_rebuilder/states_rebuilder.dart';
-export 'package:roster_system/features/rosters/rosters_manager.dart';
 
 typedef UI = ReactiveStatelessWidget;
 
@@ -39,43 +38,43 @@ class App extends UI {
     return MaterialApp(
       navigatorKey: navigator.navigatorKey,
       debugShowCheckedModeBanner: false,
-      theme: themes.theme,
-      darkTheme: themes.darkTheme,
+      theme: theme,
+      darkTheme: darkTheme,
       themeMode: settingsManager.themeMode,
       home: RostersPage(),
     );
   }
 }
 
-final themes = Themes();
+ThemeData get theme {
+  return FlexThemeData.light(
+    colorScheme: ColorScheme.fromSwatch(
+      primarySwatch: settingsManager.materialColor,
+    ),
+    subThemesData: FlexSubThemesData(
+      defaultRadius: settingsManager.borderRadius,
+    ),
+    useMaterial3: true,
+    lightIsWhite: true,
+    appBarStyle: FlexAppBarStyle.primary,
+  );
+}
 
-class Themes {
-  ThemeData get theme {
-    return FlexThemeData.light(
-      colorScheme: ColorScheme.fromSwatch(
-        primarySwatch: settingsManager.materialColor,
-      ),
-      subThemesData: FlexSubThemesData(
-        defaultRadius: settingsManager.borderRadius,
-      ),
-      useMaterial3: true,
-      lightIsWhite: true,
-      appBarStyle: FlexAppBarStyle.primary,
-    );
-  }
+ThemeData get darkTheme {
+  return FlexThemeData.dark(
+    colorScheme: ColorScheme.fromSwatch(
+      primarySwatch: settingsManager.materialColor,
+      brightness: Brightness.dark,
+    ),
+    subThemesData: FlexSubThemesData(
+      defaultRadius: settingsManager.borderRadius,
+    ),
+    appBarStyle: FlexAppBarStyle.primary,
+    useMaterial3: true,
+    darkIsTrueBlack: true,
+  );
+}
 
-  ThemeData get darkTheme {
-    return FlexThemeData.dark(
-      colorScheme: ColorScheme.fromSwatch(
-        primarySwatch: settingsManager.materialColor,
-        brightness: Brightness.dark,
-      ),
-      subThemesData: FlexSubThemesData(
-        defaultRadius: settingsManager.borderRadius,
-      ),
-      appBarStyle: FlexAppBarStyle.primary,
-      useMaterial3: true,
-      darkIsTrueBlack: true,
-    );
-  }
+abstract class Model<T> {
+  T call([T t]);
 }

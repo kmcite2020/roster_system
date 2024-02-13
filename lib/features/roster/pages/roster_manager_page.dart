@@ -2,9 +2,10 @@
 import 'package:roster_system/features/roster/components/roster_builder.dart';
 
 import '../../../main.dart';
+import '../../rosters/rosters.dart';
 
-class RosterManagerPage extends UI {
-  const RosterManagerPage({
+class RosterEditPage extends UI {
+  const RosterEditPage({
     required this.rosterID,
   });
   final String rosterID;
@@ -14,12 +15,14 @@ class RosterManagerPage extends UI {
       rosterID: rosterID,
       builder: (Roster roster) {
         return Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            title: roster.name.text(),
+          ),
           body: ListView(
             children: [
               'Effective Dates'.text(),
               'FROM'.text(),
-              roster.withEffectFromTo.start.text(),
+              roster.withEffectFromTo.start.human(),
               ElevatedButton(
                 onPressed: () async {
                   final start = await showDatePicker(
@@ -28,20 +31,20 @@ class RosterManagerPage extends UI {
                         .subtract(Duration(days: 30)),
                     lastDate: DateTime.now().add(Duration(days: 30)),
                   );
-                  if (start == null) return;
-                  rostersManager.setRoster(
-                    roster.copyWith(
-                      withEffectFromTo: DateTimeRange(
-                        start: start,
-                        end: roster.withEffectFromTo.end,
+                  if (start != null)
+                    setRoster(
+                      roster.copyWith(
+                        withEffectFromTo: DateTimeRange(
+                          start: start,
+                          end: roster.withEffectFromTo.end,
+                        ),
                       ),
-                    ),
-                  );
+                    );
                 },
                 child: 'Update'.text(),
               ),
               'TO'.text(),
-              roster.withEffectFromTo.end.text(),
+              roster.withEffectFromTo.end.human(),
               ElevatedButton(
                 onPressed: () async {
                   final end = await showDatePicker(
@@ -51,7 +54,7 @@ class RosterManagerPage extends UI {
                     lastDate: DateTime.now().add(Duration(days: 30)),
                   );
                   if (end == null) return;
-                  rostersManager.setRoster(
+                  setRoster(
                     roster.copyWith(
                       withEffectFromTo: DateTimeRange(
                         start: roster.withEffectFromTo.start,
@@ -62,6 +65,14 @@ class RosterManagerPage extends UI {
                 },
                 child: 'Update'.text(),
               ),
+              TextFormField(
+                initialValue: roster.signedBy,
+                onChanged: (value) {
+                  setRoster(
+                    roster.copyWith(signedBy: value),
+                  );
+                },
+              ).pad(),
             ],
           ),
         );

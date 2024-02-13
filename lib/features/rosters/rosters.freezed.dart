@@ -93,10 +93,11 @@ class __$$RostersImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$RostersImpl implements _Rosters {
+class _$RostersImpl extends _Rosters {
   const _$RostersImpl(
       {final Map<String, Roster> cache = const <String, Roster>{}})
-      : _cache = cache;
+      : _cache = cache,
+        super._();
 
   factory _$RostersImpl.fromJson(Map<String, dynamic> json) =>
       _$$RostersImplFromJson(json);
@@ -142,8 +143,9 @@ class _$RostersImpl implements _Rosters {
   }
 }
 
-abstract class _Rosters implements Rosters {
+abstract class _Rosters extends Rosters {
   const factory _Rosters({final Map<String, Roster> cache}) = _$RostersImpl;
+  const _Rosters._() : super._();
 
   factory _Rosters.fromJson(Map<String, dynamic> json) = _$RostersImpl.fromJson;
 

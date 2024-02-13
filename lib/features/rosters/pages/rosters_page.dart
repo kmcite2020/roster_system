@@ -1,5 +1,6 @@
 import 'package:roster_system/features/roster/components/roster_builder.dart';
 import 'package:roster_system/features/roster/pages/roster_manager_page.dart';
+import 'package:roster_system/features/rosters/rosters.dart';
 
 import '../../../main.dart';
 
@@ -14,14 +15,14 @@ class RostersPage extends UI {
         actions: [
           IconButton(
             onPressed: () {
-              rostersManager.setRoster(Roster());
+              setRoster(Roster());
             },
             icon: Icon(Icons.add),
           )
         ],
       ),
       body: MapBuilder(
-        map: rostersManager.state.cache,
+        map: rosters.cache,
         builder: (_, rosters) {
           return ListView.builder(
             itemCount: rosters.length,
@@ -50,7 +51,7 @@ class RosterTile extends StatelessWidget {
           title: TextFormField(
             initialValue: roster.name,
             onChanged: (value) {
-              rostersManager.setRoster(
+              setRoster(
                 roster.copyWith(name: value),
               );
             },
@@ -62,13 +63,13 @@ class RosterTile extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      navigator.to(RosterPage(rosterID: rosterID));
+                      navigator.to(RosterReadPage(rosterID: rosterID));
                     },
                     icon: Icon(Icons.view_timeline),
                   ),
                   IconButton(
                     onPressed: () {
-                      navigator.to(RosterManagerPage(rosterID: rosterID));
+                      navigator.to(RosterEditPage(rosterID: rosterID));
                     },
                     icon: Icon(Icons.edit),
                   ),

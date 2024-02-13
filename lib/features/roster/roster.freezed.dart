@@ -214,7 +214,7 @@ class __$$RosterImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$RosterImpl implements _Roster {
+class _$RosterImpl extends _Roster {
   const _$RosterImpl(
       {final Map<String, RosterEntry> rosterEntries =
           const <String, RosterEntry>{},
@@ -224,7 +224,8 @@ class _$RosterImpl implements _Roster {
       final List<String> copyForwardedTo = const <String>[],
       this.signedBy = ''})
       : _rosterEntries = rosterEntries,
-        _copyForwardedTo = copyForwardedTo;
+        _copyForwardedTo = copyForwardedTo,
+        super._();
 
   factory _$RosterImpl.fromJson(Map<String, dynamic> json) =>
       _$$RosterImplFromJson(json);
@@ -388,7 +389,7 @@ class _$RosterImpl implements _Roster {
   }
 }
 
-abstract class _Roster implements Roster {
+abstract class _Roster extends Roster {
   const factory _Roster(
       {final Map<String, RosterEntry> rosterEntries,
       final String rosterID,
@@ -396,6 +397,7 @@ abstract class _Roster implements Roster {
       @DateTimeRangeConverter() required final DateTimeRange withEffectFromTo,
       final List<String> copyForwardedTo,
       final String signedBy}) = _$RosterImpl;
+  const _Roster._() : super._();
 
   factory _Roster.fromJson(Map<String, dynamic> json) = _$RosterImpl.fromJson;
 

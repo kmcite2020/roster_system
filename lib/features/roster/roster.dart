@@ -1,4 +1,5 @@
 import '../../main.dart';
+import '../rosters/rosters.dart';
 
 part 'roster.freezed.dart';
 part 'roster.g.dart';
@@ -14,6 +15,9 @@ class Roster with _$Roster {
     @Default(<String>[]) final List<String> copyForwardedTo,
     @Default('') final String signedBy,
   }) = _Roster;
+  const Roster._();
+  String get fromDate => '${withEffectFromTo.start}';
+  String get toDate => '${withEffectFromTo.end}';
   factory Roster.fromJson(json) => _$RosterFromJson(json);
   factory Roster() => Roster.raw(
         rosterID: randomID,
@@ -22,9 +26,7 @@ class Roster with _$Roster {
           end: DateTime.now(),
         ),
       );
-  factory Roster.id(String rosterID) {
-    return rostersManager.id(rosterID);
-  }
+  factory Roster.id(String rosterID) => rosterFromID(rosterID);
 }
 
 @freezed

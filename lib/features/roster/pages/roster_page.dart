@@ -5,8 +5,8 @@ import 'package:roster_system/features/roster/roster_manager.dart';
 
 import '../../../main.dart';
 
-class RosterPage extends UI {
-  const RosterPage({
+class RosterReadPage extends UI {
+  const RosterReadPage({
     required this.rosterID,
   });
   final String rosterID;
