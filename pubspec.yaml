@@ -17,6 +17,10 @@ dependencies:
   hive_flutter:
   freezed_annotation:
   json_annotation:
+  manager:
+    path: D://FLUTTER//workspace_ui//packages//manager
+  extensions:
+    path: D://FLUTTER//workspace_ui//packages//extensions
 dev_dependencies:
   build_runner: ^2.4.6
   freezed:
