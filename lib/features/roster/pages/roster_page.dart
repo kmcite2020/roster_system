@@ -23,7 +23,8 @@ class RosterReadPage extends UI {
               children: [
                 roster.withEffectFromTo.str().text().pad(),
                 Table(
-                  border: TableBorder.all(color: settingsManager.materialColor),
+                  border: TableBorder.all(
+                      color: settingsManager.get().materialColor),
                   children: [
                     TableRow(
                       children: [
@@ -63,7 +64,7 @@ class RosterReadPage extends UI {
                                   onPressed: () {
                                     print(shiftType);
                                     print(dayType);
-                                    navigator.toDialog(
+                                    RM.navigate.toDialog(
                                       AddOrRemoveMedicalOfficerDialog(
                                         medicalOfficers: medicalOfficers,
                                         dayType: dayType,

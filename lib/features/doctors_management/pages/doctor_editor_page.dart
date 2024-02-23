@@ -1,6 +1,6 @@
 import '../../../main.dart';
 
-class DoctorEditorPage extends ReactiveStatelessWidget {
+class DoctorEditorPage extends UI {
   const DoctorEditorPage({required this.id});
   final String id;
   @override
@@ -62,12 +62,12 @@ class DoctorEditorPage extends ReactiveStatelessWidget {
                     Container(
                       width: double.maxFinite,
                       height: 50,
-                      margin: EdgeInsets.all(settingsManager.padding),
+                      margin: EdgeInsets.all(settingsManager.get().padding),
                       decoration: BoxDecoration(
-                        border:
-                            Border.all(color: settingsManager.materialColor),
-                        borderRadius:
-                            BorderRadius.circular(settingsManager.borderRadius),
+                        border: Border.all(
+                            color: settingsManager.get().materialColor),
+                        borderRadius: BorderRadius.circular(
+                            settingsManager.get().borderRadius),
                       ),
                       child: ElevatedButton.icon(
                         icon: Icon(Icons.ad_units),

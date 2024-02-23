@@ -16,7 +16,8 @@ class DoctorsManagerPage extends UI {
                 .map(
                   (doctor) => ListTile(
                     title: doctor.name.text(),
-                    onTap: () => navigator.to(DoctorEditorPage(id: doctor.id)),
+                    onTap: () =>
+                        RM.navigate.to(DoctorEditorPage(id: doctor.id)),
                     trailing: IconButton(
                       onPressed: () => doctorsManager.removeDoctor(doctor),
                       icon: Icon(Icons.delete),

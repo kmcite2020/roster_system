@@ -47,7 +47,7 @@ class AddOrRemoveMedicalOfficerDialog extends UI {
                             dayType: dayType,
                             shiftType: shiftType,
                           );
-                          navigator.back();
+                          RM.navigate.back();
                         },
                         title:
                             eachMedicalOfficer.name.toUpperCase().text().pad(),

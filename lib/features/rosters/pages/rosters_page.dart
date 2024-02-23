@@ -63,13 +63,13 @@ class RosterTile extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      navigator.to(RosterReadPage(rosterID: rosterID));
+                      RM.navigate.to(RosterReadPage(rosterID: rosterID));
                     },
                     icon: Icon(Icons.view_timeline),
                   ),
                   IconButton(
                     onPressed: () {
-                      navigator.to(RosterEditPage(rosterID: rosterID));
+                      RM.navigate.to(RosterEditPage(rosterID: rosterID));
                     },
                     icon: Icon(Icons.edit),
                   ),

@@ -8,7 +8,6 @@ export 'package:freezed_annotation/freezed_annotation.dart';
 export 'package:hive_flutter/hive_flutter.dart';
 export 'package:roster_system/features/core/extensions.dart';
 export 'package:roster_system/features/core/hive_storage.dart';
-export 'package:roster_system/features/core/navigator.dart';
 export 'package:roster_system/features/doctors_management/doctor.dart';
 export 'package:roster_system/features/doctors_management/doctor_editor.dart';
 export 'package:roster_system/features/doctors_management/pages/doctor_editor_page.dart';
@@ -20,47 +19,6 @@ export 'package:roster_system/features/rosters/pages/rosters_page.dart';
 export 'package:roster_system/features/settings/settings.dart';
 export 'package:roster_system/features/settings/settings_manager.dart';
 export 'package:states_rebuilder/states_rebuilder.dart';
-
-class _Injected<T> {
-  final Injected<T> injected;
-  late final call = injected.call;
-
-  _Injected(this.injected) {
-    injected.canRedoState;
-    injected.canUndoState;
-    injected.customStatus;
-    injected.error;
-    injected.rebuild;
-    injected.state;
-    injected.stateAsync;
-    injected.subscription;
-    injected.snapState;
-    injected.customStatus;
-    injected.hasData;
-    injected.hasError;
-    injected.hasObservers;
-    injected.isDone;
-    injected.isIdle;
-    injected.isWaiting;
-    injected.inherited;
-    injected.reInherited;
-    injected.addCleaner(() {});
-    injected.addObserver(listener: listener);
-    injected.cleanState();
-    injected.clearUndoStack();
-    injected.deletePersistState();
-    injected.dispose();
-    injected.disposeIfNotUsed();
-    injected.initializeState();
-    injected.of(context);
-    injected.notify();
-    injected.onAll(onWaiting: onWaiting, onError: onError, onData: onData);
-    injected.onOrElse(orElse: orElse);
-    injected.persistState();
-    injected.refresh();
-    injected.setState((s) => null);
-  }
-}
 
 typedef UI = ReactiveStatelessWidget;
 
@@ -77,11 +35,11 @@ class App extends UI {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      navigatorKey: navigator.navigatorKey,
+      navigatorKey: RM.navigate.navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: theme,
       darkTheme: darkTheme,
-      themeMode: settingsManager.themeMode,
+      themeMode: settingsManager.get().themeMode,
       home: RostersPage(),
     );
   }
@@ -93,7 +51,7 @@ ThemeData get theme {
       primarySwatch: materialColorRM(),
     ),
     subThemesData: FlexSubThemesData(
-      defaultRadius: settingsManager.borderRadius,
+      defaultRadius: settingsManager.get().borderRadius,
     ),
     useMaterial3: true,
     lightIsWhite: true,
@@ -108,7 +66,7 @@ ThemeData get darkTheme {
       brightness: Brightness.dark,
     ),
     subThemesData: FlexSubThemesData(
-      defaultRadius: settingsManager.borderRadius,
+      defaultRadius: settingsManager.get().borderRadius,
     ),
     appBarStyle: FlexAppBarStyle.primary,
     useMaterial3: true,
