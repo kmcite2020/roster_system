@@ -5,33 +5,38 @@ final SettingsManager settingsManager = SettingsManager();
 class SettingsManager {
   final settingsRM = RM.inject(
     () => Settings(),
-    persist: () {
-      return PersistState(
-        key: 'settings',
-        fromJson: (json) => Settings.fromJson(jsonDecode(json)),
-        toJson: (s) => jsonEncode(s.toJson()),
-      );
-    },
+    persist: () => PersistState(
+      key: 'settings',
+      fromJson: (json) => Settings.fromJson(jsonDecode(json)),
+      toJson: (s) => jsonEncode(s.toJson()),
+    ),
   );
-  Settings get settings => settingsRM.state;
-  set settings(Settings settings) => settingsRM.state = settings;
 
-  void setSettings(Settings Function(Settings settings) modifier) =>
-      settings = modifier(settings);
+  late final get = settingsRM.get;
+}
 
-  double get borderRadius => settings.borderRadius;
-  double get padding => settings.padding;
-  double get textScaleFactor => settings.textScaleFactor;
-  int get pageIndex => settings.pageIndex;
-  ThemeMode get themeMode => settings.themeMode;
-  MaterialColor get materialColor => settings.materialColor;
+final ThemeModeRM themeModeRM = ThemeModeRM();
 
-  void setPageIndex(int? value) =>
-      setSettings((settings) => settings.copyWith(pageIndex: value!));
+class ThemeModeRM {
+  ThemeMode call([ThemeMode? _themeMode]) {
+    if (_themeMode != null) {
+      settingsManager.get(
+        settingsManager.get().copyWith(themeMode: _themeMode),
+      );
+    }
+    return settingsManager.get().themeMode;
+  }
+}
 
-  void setThemeMode(ThemeMode? value) =>
-      setSettings((settings) => settings.copyWith(themeMode: value!));
+final MaterialColorRM materialColorRM = MaterialColorRM();
 
-  void setMaterialColor(MaterialColor? value) =>
-      setSettings((settings) => settings.copyWith(materialColor: value!));
+class MaterialColorRM {
+  MaterialColor call([MaterialColor? _materialColor]) {
+    if (_materialColor != null) {
+      settingsManager.get(
+        settingsManager.get().copyWith(materialColor: _materialColor),
+      );
+    }
+    return settingsManager.get().materialColor;
+  }
 }

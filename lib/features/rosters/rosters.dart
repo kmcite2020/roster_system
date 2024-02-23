@@ -4,7 +4,7 @@ part 'rosters.freezed.dart';
 part 'rosters.g.dart';
 
 @freezed
-class Rosters with _$Rosters implements Model<Rosters> {
+class Rosters with _$Rosters {
   const factory Rosters({
     @Default(<String, Roster>{}) final Map<String, Roster> cache,
   }) = _Rosters;
@@ -14,7 +14,6 @@ class Rosters with _$Rosters implements Model<Rosters> {
 
   const Rosters._();
 
-  @override
   Rosters call([Rosters? _rosters]) =>
       _rosters != null ? rosters = _rosters : rosters;
 }

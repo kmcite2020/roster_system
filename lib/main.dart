@@ -21,6 +21,47 @@ export 'package:roster_system/features/settings/settings.dart';
 export 'package:roster_system/features/settings/settings_manager.dart';
 export 'package:states_rebuilder/states_rebuilder.dart';
 
+class _Injected<T> {
+  final Injected<T> injected;
+  late final call = injected.call;
+
+  _Injected(this.injected) {
+    injected.canRedoState;
+    injected.canUndoState;
+    injected.customStatus;
+    injected.error;
+    injected.rebuild;
+    injected.state;
+    injected.stateAsync;
+    injected.subscription;
+    injected.snapState;
+    injected.customStatus;
+    injected.hasData;
+    injected.hasError;
+    injected.hasObservers;
+    injected.isDone;
+    injected.isIdle;
+    injected.isWaiting;
+    injected.inherited;
+    injected.reInherited;
+    injected.addCleaner(() {});
+    injected.addObserver(listener: listener);
+    injected.cleanState();
+    injected.clearUndoStack();
+    injected.deletePersistState();
+    injected.dispose();
+    injected.disposeIfNotUsed();
+    injected.initializeState();
+    injected.of(context);
+    injected.notify();
+    injected.onAll(onWaiting: onWaiting, onError: onError, onData: onData);
+    injected.onOrElse(orElse: orElse);
+    injected.persistState();
+    injected.refresh();
+    injected.setState((s) => null);
+  }
+}
+
 typedef UI = ReactiveStatelessWidget;
 
 void main() async {
@@ -49,7 +90,7 @@ class App extends UI {
 ThemeData get theme {
   return FlexThemeData.light(
     colorScheme: ColorScheme.fromSwatch(
-      primarySwatch: settingsManager.materialColor,
+      primarySwatch: materialColorRM(),
     ),
     subThemesData: FlexSubThemesData(
       defaultRadius: settingsManager.borderRadius,
@@ -63,7 +104,7 @@ ThemeData get theme {
 ThemeData get darkTheme {
   return FlexThemeData.dark(
     colorScheme: ColorScheme.fromSwatch(
-      primarySwatch: settingsManager.materialColor,
+      primarySwatch: materialColorRM(),
       brightness: Brightness.dark,
     ),
     subThemesData: FlexSubThemesData(
@@ -73,8 +114,4 @@ ThemeData get darkTheme {
     useMaterial3: true,
     darkIsTrueBlack: true,
   );
-}
-
-abstract class Model<T> {
-  T call([T t]);
 }

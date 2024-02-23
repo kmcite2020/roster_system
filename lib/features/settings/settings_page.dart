@@ -14,7 +14,7 @@ class SettingsPage extends UI {
         physics: const BouncingScrollPhysics(),
         children: [
           DropdownButtonFormField(
-            value: settingsManager.themeMode,
+            value: themeModeRM(),
             items: ThemeMode.values.map(
               (eachThemeMode) {
                 return DropdownMenuItem(
@@ -23,10 +23,10 @@ class SettingsPage extends UI {
                 );
               },
             ).toList(),
-            onChanged: settingsManager.setThemeMode,
+            onChanged: themeModeRM.call,
           ).pad(),
           DropdownButtonFormField(
-            value: settingsManager.materialColor,
+            value: materialColorRM(),
             items: Colors.primaries.map(
               (eachMaterialColor) {
                 return DropdownMenuItem(
@@ -35,7 +35,7 @@ class SettingsPage extends UI {
                 );
               },
             ).toList(),
-            onChanged: settingsManager.setMaterialColor,
+            onChanged: materialColorRM.call,
           ).pad(),
         ],
       ),

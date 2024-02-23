@@ -3,11 +3,13 @@ import 'package:uuid/uuid.dart';
 
 String get randomID => Uuid().v4();
 
-extension ObjectExtensions on Object? {
-  Widget text({double? textScaleFactor}) => Text(
-        this.toString(),
-        textScaler: TextScaler.linear(textScaleFactor ?? 1),
-      );
+extension ObjectExtensions on dynamic {
+  Widget text({double? textScaleFactor}) {
+    return Text(
+      this.toString(),
+      textScaler: TextScaler.linear(textScaleFactor ?? 1),
+    );
+  }
 }
 
 extension WidgetExtensions on Widget {
@@ -26,4 +28,8 @@ extension DateTimeExtensions on DateTime {
   String get day => this.day.toString();
   String get month => this.month.toString();
   String get year => this.year.toString();
+}
+
+extension InjectedExtensions<T> on Injected<T> {
+  T get([T? _state]) => _state != null ? state = _state : state;
 }

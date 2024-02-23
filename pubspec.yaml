@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons:
-  states_rebuilder: ^6.3.0
+  states_rebuilder: ^6.4.0
   colornames:
   uuid: ^3.0.7
   path_provider: ^2.1.1
